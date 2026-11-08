@@ -456,7 +456,7 @@ export default function InquirePage() {
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between">
                     <label className="font-body text-[10px] uppercase tracking-[0.2em] text-ink/50 font-semibold">
-                      Anticipated Floral &amp; Production Investment *
+                      Decor budget *
                     </label>
                     {isIntimateGuestCount && (
                       <span className="font-body text-[9px] uppercase tracking-widest text-gold font-semibold bg-gold/10 px-2.5 py-0.5 rounded-full">
@@ -464,6 +464,10 @@ export default function InquirePage() {
                       </span>
                     )}
                   </div>
+
+                  <p className="font-body text-xs text-ink/60">
+                    Your estimated budget for decor only.
+                  </p>
 
                   <div className="flex flex-col gap-2.5">
                     {(isIntimateGuestCount
