@@ -119,7 +119,43 @@ export function capiEvent(trigger: CapiTrigger, lead: CapiLead, value: number | 
   };
 }
 
-export async function sendCapiEvent(event: ReturnType<typeof capiEvent>) {
+/** Forms whose saved submission is a real inquiry. The checklist keeps its browser-only Lead. */
+export const SERVER_LEAD_SOURCES = new Set(["inquire", "consultation", "reserve"]);
+const SITE_HOSTS = new Set(["ladyvictoriadesigns.com", "www.ladyvictoriadesigns.com"]);
+
+export type WebsiteVisit = {
+  /** The form page, from the Referer header. Meta's "Inquiry" conversion matches on it. */
+  pageUrl: string | null;
+  ip: string | null;
+  userAgent: string | null;
+};
+
+/**
+ * The server copy of an inquiry's browser Lead. Same name and event ID as
+ * trackMetaLead (lvd_<id>_inquiry), so Meta keeps one and drops the other.
+ * Returns null off the live site (previews, localhost) or without what Meta
+ * requires for a website event.
+ */
+export function websiteLeadEvent(lead: CapiLead, visit: WebsiteVisit, now = new Date()) {
+  let page: URL;
+  try { page = new URL(visit.pageUrl || ""); } catch { return null; }
+  if (page.protocol !== "https:" || !SITE_HOSTS.has(page.hostname) || !visit.userAgent) return null;
+  const base = capiEvent("fit_good", lead, null, now);
+  const userData: Record<string, unknown> = { ...base.user_data, client_user_agent: visit.userAgent };
+  if (visit.ip) userData.client_ip_address = visit.ip;
+  return {
+    event_name: "Lead",
+    event_time: base.event_time,
+    event_id: `lvd_${lead.id}_inquiry`,
+    action_source: "website",
+    event_source_url: `${page.origin}${page.pathname}`,
+    user_data: userData,
+  };
+}
+
+export type CapiPayload = { event_name: string; event_time: number; event_id: string; action_source: string; user_data: Record<string, unknown> };
+
+export async function sendCapiEvent(event: CapiPayload) {
   const config = metaConfig();
   if (!config.capiToken) return { skipped: true as const };
   const response = await fetch(`${config.graph}/${config.pixel}/events`, {

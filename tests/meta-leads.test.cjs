@@ -104,6 +104,8 @@ test('email retries preserve the saved inquiry, never resend to accepted recipie
         return { ok: true, json: async () => [{ id:'saved-id' }] }; },
     }, name => name === 'node:crypto' ? require(name) : name === 'next/server' ? { after: fn => background.push(fn) }
       : name === '@/lib/lead-quality' ? quality : name === '@/lib/attribution' ? { attributionColumns: () => ({}) }
+      : name === '@/lib/meta-ads' ? { SERVER_LEAD_SOURCES: new Set(['inquire']), sendCapiEvent: async () => ({ skipped: true }), websiteLeadEvent: () => null }
+      : name === '@/lib/admin-data' ? { logCapiEvent: async () => {} }
       : name === 'nodemailer' ? {default:{createTransport:()=>({sendMail:async message=>{
         messages.push(message);
         if (mode === 'fail' || (mode === 'recover' && messages.length === 1)) throw Error('SMTP failure');

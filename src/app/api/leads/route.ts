@@ -4,6 +4,8 @@ import { after } from "next/server";
 import { attributionColumns } from "@/lib/attribution";
 import { sendChecklistEmail, tourPath } from "@/lib/checklist-emails";
 import { isMarketingSolicitation, type LeadNotification } from "@/lib/lead-quality";
+import { logCapiEvent } from "@/lib/admin-data";
+import { SERVER_LEAD_SOURCES, sendCapiEvent, websiteLeadEvent } from "@/lib/meta-ads";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 90;
@@ -67,10 +69,13 @@ function plainPayload(value: unknown) {
   return value as Record<string, unknown>;
 }
 
-function ipHash(request: Request, secret: string) {
+function clientIp(request: Request) {
   const forwardedFor = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  const realIp = request.headers.get("x-real-ip")?.trim();
-  const ip = forwardedFor || realIp;
+  return forwardedFor || request.headers.get("x-real-ip")?.trim() || null;
+}
+
+function ipHash(request: Request, secret: string) {
+  const ip = clientIp(request);
   if (!ip) return null;
   return createHash("sha256").update(`${ip}:${secret}`).digest("hex");
 }
@@ -264,6 +269,26 @@ ${attachmentsList}
           }
         } catch (emailError) {
           console.error("Failed to send Gmail lead notification:", emailError);
+        }
+      });
+    }
+
+    // Tell Meta about the inquiry from here, so a quick jump to /thank-you or an
+    // ad blocker can't lose it. Runs after the response; Meta can never fail a save.
+    if (leadId && !solicitation && SERVER_LEAD_SOURCES.has(source)) {
+      after(async () => {
+        try {
+          const event = websiteLeadEvent(
+            { id: leadId, email, phone, attribution: tracking.attribution },
+            { pageUrl: request.headers.get("referer"), ip: clientIp(request), userAgent: request.headers.get("user-agent") },
+          );
+          if (!event) return;
+          const sent = await sendCapiEvent(event);
+          if (sent.skipped) return;
+          await logCapiEvent({ event_id: event.event_id, lead_id: leadId, event_name: "Lead", value: null, ok: sent.ok, response: sent.body });
+          if (!sent.ok) console.error("Meta Conversions API rejected an inquiry Lead.", { leadId });
+        } catch {
+          console.error("Meta Conversions API inquiry Lead failed.", { leadId });
         }
       });
     }

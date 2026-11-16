@@ -7,7 +7,7 @@ const crypto = require('node:crypto');
 function load(file, requireFn, env = {}) {
   const exports = {};
   const code = ts.transpileModule(fs.readFileSync(file, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
-  vm.runInNewContext(code, { exports, require: requireFn, process: { env }, URLSearchParams, JSON, Number, Math, Intl, Date, Array });
+  vm.runInNewContext(code, { exports, require: requireFn, process: { env }, URLSearchParams, URL, Set, JSON, Number, Math, Intl, Date, Array });
   return exports;
 }
 const meta = load('src/lib/meta-ads.ts', name => name === 'node:crypto' ? crypto : {});
@@ -58,6 +58,35 @@ test("Valentina's booking becomes a hashed Purchase worth $36,000; nothing reada
   assert.equal(qualified.event_name, 'QualifiedLead');
   assert.equal(qualified.custom_data, undefined);
   assert.equal(qualified.user_data.em, undefined);
+});
+
+test("Valentina's inquiry becomes a server Lead that matches her browser Lead", () => {
+  const lead = { id: 'lead-9', email: 'Valentina@Example.com', phone: '804-467-4585', attribution: { fbc: 'fb.1.1.abc', fbp: 'fb.1.2.def' } };
+  const visit = { pageUrl: 'https://ladyvictoriadesigns.com/welcome?utm_source=fb&fbclid=x', ip: '203.0.113.9', userAgent: 'Mozilla/5.0 Test' };
+  const event = plain(meta.websiteLeadEvent(lead, visit, new Date('2026-11-16T15:00:00Z')));
+  assert.equal(event.event_name, 'Lead');
+  assert.equal(event.event_id, 'lvd_lead-9_inquiry', 'same ID as trackMetaLead, so Meta counts it once');
+  assert.equal(event.action_source, 'website');
+  assert.equal(event.event_source_url, 'https://ladyvictoriadesigns.com/welcome', 'page path kept for the Inquiry conversion, query dropped');
+  assert.equal(event.user_data.client_user_agent, 'Mozilla/5.0 Test');
+  assert.equal(event.user_data.client_ip_address, '203.0.113.9');
+  assert.deepEqual(event.user_data.em, [sha('valentina@example.com')]);
+  assert.deepEqual(event.user_data.ph, [sha('18044674585')]);
+  assert.equal(event.user_data.fbc, 'fb.1.1.abc');
+  assert.equal(event.user_data.fbp, 'fb.1.2.def');
+  assert.equal(event.custom_data, undefined);
+  assert.ok(!JSON.stringify(event).includes('alentina'), 'no plain email in the payload');
+});
+
+test('no server Lead from previews, localhost, or without a browser', () => {
+  const lead = { id: 'lead-9', email: 'a@b.co', phone: null };
+  const ok = { ip: null, userAgent: 'UA' };
+  assert.equal(meta.websiteLeadEvent(lead, { ...ok, pageUrl: 'https://lvd-git-main.vercel.app/inquire' }), null);
+  assert.equal(meta.websiteLeadEvent(lead, { ...ok, pageUrl: 'http://localhost:3000/inquire' }), null);
+  assert.equal(meta.websiteLeadEvent(lead, { ...ok, pageUrl: null }), null);
+  assert.equal(meta.websiteLeadEvent(lead, { ...ok, pageUrl: 'https://ladyvictoriadesigns.com/inquire', userAgent: null }), null);
+  assert.ok(meta.websiteLeadEvent(lead, { ...ok, pageUrl: 'https://www.ladyvictoriadesigns.com/reserve' }));
+  assert.deepEqual([...meta.SERVER_LEAD_SOURCES].sort(), ['consultation', 'inquire', 'reserve'], 'checklist and quiz stay browser-only');
 });
 
 test('the daily job refuses callers without the cron secret', async () => {
