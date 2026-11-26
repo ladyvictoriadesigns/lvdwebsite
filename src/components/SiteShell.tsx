@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import Cursor from "@/components/Cursor";
 import Header from "@/components/Header";
 import SmoothScroll from "@/components/SmoothScroll";
+import CartProvider from "@/components/shop/CartProvider";
 import Footer from "@/components/sections/Footer";
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
@@ -27,13 +28,13 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   const isReserveV2 = pathname === "/welcome" || pathname === "/venue-checklist" || pathname.startsWith("/venue-checklist/");
 
   return (
-    <>
+    <CartProvider>
       <Cursor />
       {!isReserveV2 && <Header />}
       <SmoothScroll>
         {children}
         {!isReserveV2 && <Footer />}
       </SmoothScroll>
-    </>
+    </CartProvider>
   );
 }

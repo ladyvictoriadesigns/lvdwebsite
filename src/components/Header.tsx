@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import Magnetic from "@/components/Magnetic";
+import CartLink from "@/components/shop/CartLink";
 import { media } from "@/lib/media-slots";
 
 const MENU_ITEMS = [
@@ -82,8 +83,17 @@ const MENU_ITEMS = [
     caption: "Notes From The Studio",
   },
   {
-    id: "inquire",
+    id: "shop",
     number: "09",
+    label: "Shop",
+    subtitle: "Pieces The Studio Loves",
+    path: "/shop",
+    image: media["services.capability.4"],
+    caption: "Pedestal Bowls, Crystal & Candlelight · The Shop",
+  },
+  {
+    id: "inquire",
+    number: "10",
     label: "Inquire",
     subtitle: "Begin Your Bespoke Consultation",
     path: "/inquire",
@@ -112,6 +122,7 @@ export default function Header() {
     pathname?.startsWith("/services") ||
     pathname?.startsWith("/planning") ||
     pathname?.startsWith("/packages") ||
+    pathname?.startsWith("/shop") ||
     pathname?.startsWith("/thank-you");
 
   // Update active preview image based on route
@@ -278,6 +289,12 @@ export default function Header() {
           >
             Journal
           </Link>
+          <Link 
+            href="/shop" 
+            className={`hover:text-gold transition-colors ${pathname?.startsWith("/shop") ? "text-gold font-bold" : ""}`}
+          >
+            Shop
+          </Link>
         </nav>
 
         {/* Right: Menu Trigger + Inquire CTA */}
@@ -296,6 +313,9 @@ export default function Header() {
               <span>Menu</span>
             </button>
           </Magnetic>
+
+          {/* Cart */}
+          <CartLink />
 
           {/* Inquire CTA */}
           <Magnetic>

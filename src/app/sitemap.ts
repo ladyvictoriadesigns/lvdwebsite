@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getJournalPosts } from "@/lib/journal-data";
+import { PRODUCTS } from "@/data/products";
 
 const siteUrl = "https://www.ladyvictoriadesigns.com";
 
@@ -20,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/journal`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${siteUrl}/quiz`, changeFrequency: "yearly", priority: 0.6 },
     { url: `${siteUrl}/inquire`, changeFrequency: "yearly", priority: 0.8 },
+    { url: `${siteUrl}/shop`, changeFrequency: "monthly", priority: 0.8 },
+    ...PRODUCTS.map((product) => ({
+      url: `${siteUrl}/shop/${product.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
     { url: `${siteUrl}/privacy`, changeFrequency: "yearly", priority: 0.3 },
     ...journalEntries,
   ];
