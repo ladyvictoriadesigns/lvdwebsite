@@ -55,7 +55,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
     details: ["Set of three graduated shades", "Faceted crystal", "Designed to crown taper candles"],
     description:
       "A graduated trio of faceted crystal shades that crown taper candles with a soft, prismatic glow. In three heights, the set layers light across a table the way a stylist layers texture — quietly, and to beautiful effect.",
-    image: "/shop/lamp-shades-event.jpg",
+    image: "/shop/lamp-shades-dahlia.jpg",
     imageAlt: "Faceted crystal lamp shades glowing over taper candles",
     gallery: ["/shop/lamp-shades-small-trio.jpg"],
   },
