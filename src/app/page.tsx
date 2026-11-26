@@ -1,5 +1,6 @@
 
 import CollapsingHero from "@/components/sections/CollapsingHero";
+import ShopSign from "@/components/sections/ShopSign";
 import MasterpieceStatement from "@/components/sections/MasterpieceStatement";
 import ParallaxDivider from "@/components/sections/ParallaxDivider";
 import SignatureWork from "@/components/sections/SignatureWork";
@@ -14,6 +15,7 @@ export default function Home() {
     <main className="w-full min-h-screen overflow-x-hidden block">
 
       <CollapsingHero />
+      <ShopSign />
       <MasterpieceStatement />
       <SignatureWork />
       <CurtsyStatement />

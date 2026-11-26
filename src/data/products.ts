@@ -154,8 +154,9 @@ export const AVAILABLE_PRODUCTS: Product[] = [
     details: ["Set of three", "Stemmed glass cups", "Made for floating candles"],
     description:
       "Stemmed glass cups made for floating candles, lifting a small flame to just the right height among the florals. A finishing detail that guests feel before they notice.",
-    image: "/shop/floating-candle-holders.jpg",
+    image: "/shop/floating-holders-event.jpg",
     imageAlt: "Stemmed floating candle holders",
+    gallery: ["/shop/floating-candle-holders.jpg"],
   },
 ];
 
