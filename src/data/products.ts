@@ -111,15 +111,15 @@ export const AVAILABLE_PRODUCTS: Product[] = [
     imageAlt: "Hexagonal clear acrylic block",
   },
   {
-    slug: "round-crystal-ring-bud-vases-set",
-    name: "Round Crystal Ring Bud Vases, Set of 3",
+    slug: "round-glass-bud-vase",
+    name: "Round Glass Bud Vase",
     price: 59.99,
     availability: "available",
-    details: ["Set of three", "Crystal ring silhouette", "Made for single stems"],
+    details: ["Glass ring silhouette", "Made for a single stem", "Priced each"],
     description:
-      "Three round crystal bud vases with a delicate ring silhouette, made for single stems scattered down a table. A few blooms, beautifully spaced, can say more than an arrangement.",
+      "A round glass bud vase with a delicate ring silhouette, made for a single stem. Scattered down a table, a few blooms, beautifully spaced, can say more than an arrangement.",
     image: "/shop/bud-vases.jpg",
-    imageAlt: "Round crystal ring bud vases",
+    imageAlt: "Round glass bud vase",
   },
   {
     slug: "tall-glass-hurricane-taper-holders-set",
@@ -152,8 +152,9 @@ export const AVAILABLE_PRODUCTS: Product[] = [
     details: ["Set of three", "Stemmed glass cups", "Made for floating candles"],
     description:
       "Stemmed glass cups made for floating candles, lifting a small flame to just the right height among the florals. A finishing detail that guests feel before they notice.",
-    image: "/shop/floating-candle-holders.jpg",
+    image: "/shop/floating-holders-trio.jpg",
     imageAlt: "Stemmed floating candle holders",
+    gallery: ["/shop/floating-holders-lit.jpg"],
   },
 ];
 
