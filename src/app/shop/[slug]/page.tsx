@@ -59,38 +59,44 @@ export default async function ProductPage({
           </Link>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mt-8">
-            {/* IMAGES */}
+            {/* IMAGES — scroll across when a product has multiple pictures */}
             <div className="flex flex-col gap-4">
-              <div className="relative w-full aspect-[4/5] overflow-hidden bg-ecru border border-ink/15">
-                <Image
-                  src={product.image}
-                  alt={product.imageAlt}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
-                {isPreSale && (
-                  <span className="absolute top-4 left-4 bg-ink text-ivory font-body text-[9px] uppercase tracking-[0.2em] px-3 py-1.5">
-                    Pre-Sale · Arriving Spring 2027
-                  </span>
-                )}
-              </div>
-              {images.length > 1 && (
-                <div className="grid grid-cols-2 gap-4">
-                  {images.slice(1).map((src) => (
+              <div className="relative border border-ink/15 bg-ecru">
+                <div className="flex overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                  {images.map((src, index) => (
                     <div
                       key={src}
-                      className="relative w-full aspect-[4/3] overflow-hidden bg-ecru border border-ink/15"
+                      className="relative w-full shrink-0 snap-center aspect-[4/5] overflow-hidden"
                     >
                       <Image
                         src={src}
                         alt={product.imageAlt}
                         fill
-                        sizes="(max-width: 1024px) 50vw, 25vw"
+                        priority={index === 0}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                         className="object-cover"
                       />
                     </div>
+                  ))}
+                </div>
+                {isPreSale && (
+                  <span className="absolute top-4 left-4 bg-ink text-ivory font-body text-[9px] uppercase tracking-[0.2em] px-3 py-1.5">
+                    Pre-Sale · Arriving Spring 2027
+                  </span>
+                )}
+                {images.length > 1 && (
+                  <span className="absolute bottom-4 right-4 bg-ivory/90 text-ink font-body text-[9px] uppercase tracking-[0.2em] px-3 py-1.5">
+                    Scroll across · {images.length} pictures
+                  </span>
+                )}
+              </div>
+              {images.length > 1 && (
+                <div className="flex items-center gap-2" aria-hidden="true">
+                  {images.map((src, index) => (
+                    <span
+                      key={src}
+                      className={`h-px flex-1 ${index === 0 ? "bg-gold" : "bg-ink/20"}`}
+                    />
                   ))}
                 </div>
               )}
