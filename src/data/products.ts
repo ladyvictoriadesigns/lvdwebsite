@@ -142,8 +142,9 @@ export const AVAILABLE_PRODUCTS: Product[] = [
     details: ["Set of three graduated heights", "Clear glass", "For pillars and tapers alike"],
     description:
       "A graduated set of clear glass candle holders in three medium heights. The varied levels let candlelight move across a table in steps — the simplest way to make a setting feel considered.",
-    image: "/shop/glass-candle-holder-medium.jpg",
+    image: "/shop/medium-holders-trio.jpg",
     imageAlt: "Glass candle holders in graduated heights",
+    gallery: ["/shop/medium-holders-lit.jpg"],
   },
   {
     slug: "stemmed-floating-candle-holders-set",
@@ -153,9 +154,8 @@ export const AVAILABLE_PRODUCTS: Product[] = [
     details: ["Set of three", "Stemmed glass cups", "Made for floating candles"],
     description:
       "Stemmed glass cups made for floating candles, lifting a small flame to just the right height among the florals. A finishing detail that guests feel before they notice.",
-    image: "/shop/floating-holders-trio.jpg",
+    image: "/shop/floating-candle-holders.jpg",
     imageAlt: "Stemmed floating candle holders",
-    gallery: ["/shop/floating-holders-lit.jpg"],
   },
 ];
 
