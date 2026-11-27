@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AddToCart from "@/components/shop/AddToCart";
+import ContactButtons from "@/components/shop/ContactButtons";
 import ProductCard from "@/components/shop/ProductCard";
 import ProductGallery from "@/components/shop/ProductGallery";
 import {
@@ -122,6 +123,7 @@ export default async function ProductPage({
               )}
 
               <AddToCart slug={product.slug} isPreSale={isPreSale} paymentLink={product.paymentLink} dueToday={dueToday(product)} />
+              <ContactButtons productName={product.name} />
 
               <p className="font-body text-xs text-ink/50 leading-relaxed mt-8 max-w-md">
                 Questions about a piece, quantities for an event, or styling advice?{" "}

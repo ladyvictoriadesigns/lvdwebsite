@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ContactButtons from "@/components/shop/ContactButtons";
 import {
   META_CONTENT_ID_TO_SLUG,
   balanceOnArrival,
@@ -165,6 +166,7 @@ export default async function CheckoutPage({
                   </Link>
                   .
                 </p>
+                <ContactButtons />
               </div>
             </>
           )}
