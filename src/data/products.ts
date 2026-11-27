@@ -55,9 +55,9 @@ export const PRE_SALE_PRODUCTS: Product[] = [
     details: ["Set of three graduated shades", "Faceted crystal", "Designed to crown taper candles"],
     description:
       "A graduated trio of faceted crystal shades that crown taper candles with a soft, prismatic glow. In three heights, the set layers light across a table the way a stylist layers texture — quietly, and to beautiful effect.",
-    image: "/shop/lamp-shades-event.jpg",
+    image: "/shop/lamp-shades-white-room.jpg",
     imageAlt: "Faceted crystal lamp shades glowing over taper candles",
-    gallery: ["/shop/lamp-shades-small-trio.jpg"],
+    gallery: ["/shop/lamp-shades-event.jpg", "/shop/lamp-shades-small-trio.jpg"],
   },
   {
     slug: "crystal-lamp-shades-large-set",
@@ -69,9 +69,9 @@ export const PRE_SALE_PRODUCTS: Product[] = [
     details: ["Set of three graduated shades", "Faceted crystal", "Statement scale for tall tapers"],
     description:
       "The grander scale of a studio favorite: three faceted crystal shades in statement heights that crown tall tapers and turn candlelight into architecture. Made for head tables, mantels, and rooms that ask for presence.",
-    image: "/shop/lamp-shades-dahlia.jpg",
+    image: "/shop/lamp-shades-red-table.jpg",
     imageAlt: "Faceted crystal lamp shades glowing over taper candles",
-    gallery: ["/shop/lamp-shades-large-sizes.jpg"],
+    gallery: ["/shop/lamp-shades-dahlia.jpg", "/shop/lamp-shades-large-sizes.jpg"],
   },
   {
     slug: "round-mirror-centerpiece-riser-gold",
@@ -95,8 +95,9 @@ export const PRE_SALE_PRODUCTS: Product[] = [
     details: ["Set of three", "Tall glass hurricanes", "Shields and lengthens the flame"],
     description:
       "Tall glass hurricanes that shelter taper flames and draw the eye upward. Grouped in threes, they give a table rhythm and height while keeping every candle burning clean and steady.",
-    image: "/shop/hurricane-taper-holders.jpg",
+    image: "/shop/hurricane-tapers-event.jpg",
     imageAlt: "Tall glass hurricane taper candle holders",
+    gallery: ["/shop/hurricane-taper-holders.jpg"],
   },
   {
     slug: "glass-candle-holder-set-medium",
@@ -108,9 +109,9 @@ export const PRE_SALE_PRODUCTS: Product[] = [
     details: ["Set of three graduated heights", "Clear glass", "For pillars and tapers alike"],
     description:
       "A graduated set of clear glass candle holders in three medium heights. The varied levels let candlelight move across a table in steps — the simplest way to make a setting feel considered.",
-    image: "/shop/medium-holders-trio.jpg",
+    image: "/shop/medium-holders-event.jpg",
     imageAlt: "Glass candle holders in graduated heights",
-    gallery: ["/shop/medium-holders-lit.jpg"],
+    gallery: ["/shop/medium-holders-trio.jpg", "/shop/medium-holders-lit.jpg"],
   },
   {
     slug: "stemmed-floating-candle-holders-set",
