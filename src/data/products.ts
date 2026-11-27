@@ -55,7 +55,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
     details: ["Set of three graduated shades", "Faceted crystal", "Designed to crown taper candles"],
     description:
       "A graduated trio of faceted crystal shades that crown taper candles with a soft, prismatic glow. In three heights, the set layers light across a table the way a stylist layers texture — quietly, and to beautiful effect.",
-    image: "/shop/lamp-shades-white-room.jpg",
+    image: "/shop/lamp-shades-red-table.jpg",
     imageAlt: "Faceted crystal lamp shades glowing over taper candles",
     gallery: ["/shop/lamp-shades-event.jpg", "/shop/lamp-shades-small-trio.jpg"],
   },
@@ -69,7 +69,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
     details: ["Set of three graduated shades", "Faceted crystal", "Statement scale for tall tapers"],
     description:
       "The grander scale of a studio favorite: three faceted crystal shades in statement heights that crown tall tapers and turn candlelight into architecture. Made for head tables, mantels, and rooms that ask for presence.",
-    image: "/shop/lamp-shades-red-table.jpg",
+    image: "/shop/lamp-shades-white-room.jpg",
     imageAlt: "Faceted crystal lamp shades glowing over taper candles",
     gallery: ["/shop/lamp-shades-dahlia.jpg", "/shop/lamp-shades-large-sizes.jpg"],
   },
