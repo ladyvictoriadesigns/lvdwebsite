@@ -201,6 +201,28 @@ export function balanceOnArrival(product: Product): number {
 // Meta Commerce catalog content IDs -> site product slugs.
 // Used by the /checkout endpoint Meta redirects shop customers to.
 export const META_CONTENT_ID_TO_SLUG: Record<string, string> = {
+  // Catalog content (retailer) IDs
+  "fisher-bowl-white": "fisher-pedestal-bowl-white",
+  "fisher-bowl-black": "fisher-pedestal-bowl-black",
+  "rlylipqwhp": "hexagonal-clear-acrylic-block",
+  "vis59celi5": "round-glass-bud-vase",
+  "zp7rnl1bkm": "round-mirror-centerpiece-riser-gold",
+  "5718suqron": "crystal-lamp-shades-large-set",
+  "dw541ihyfj": "crystal-lamp-shades-small-set",
+  "zq58f889ar": "classic-tripod-vase",
+  "a8q0tsi50n": "stemmed-floating-candle-holders-set",
+  "3n00jkc1as": "tall-glass-hurricane-taper-holders-set",
+  "woodahw4ef": "glass-candle-holder-set-medium",
+  // Meta numeric item IDs (same items)
   "30532247669698437": "fisher-pedestal-bowl-white",
   "29159250657078240": "fisher-pedestal-bowl-black",
+  "29051627594458639": "hexagonal-clear-acrylic-block",
+  "39891615953817529": "round-glass-bud-vase",
+  "40039232055722943": "round-mirror-centerpiece-riser-gold",
+  "29911576958450248": "crystal-lamp-shades-large-set",
+  "29121907564140478": "crystal-lamp-shades-small-set",
+  "39909726045342078": "classic-tripod-vase",
+  "39952213947726838": "stemmed-floating-candle-holders-set",
+  "28863968759970682": "tall-glass-hurricane-taper-holders-set",
+  "28750077821359713": "glass-candle-holder-set-medium",
 };
