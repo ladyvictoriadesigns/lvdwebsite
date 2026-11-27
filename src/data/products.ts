@@ -84,7 +84,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
       "A round mirrored riser with a gilded edge that lifts a centerpiece and doubles its candlelight. The reflection does the quiet work — florals read fuller, flames read warmer, and the whole table glows. Offered in the gold finish only.",
     image: "/shop/mirror-riser-event.jpg",
     imageAlt: "Round gold mirror centerpiece riser",
-    gallery: ["/shop/mirror-riser-gold-solo.jpg", "/shop/mirror-riser-vendor.jpg", "/shop/mirror-riser-gold-full.jpg"],
+    gallery: ["/shop/mirror-riser-vendor.jpg", "/shop/mirror-riser-gold-full.jpg"],
   },
   {
     slug: "tall-glass-hurricane-taper-holders-set",
