@@ -289,12 +289,6 @@ export default function Header() {
           >
             Journal
           </Link>
-          <Link 
-            href="/shop" 
-            className={`hover:text-gold transition-colors ${pathname?.startsWith("/shop") ? "text-gold font-bold" : ""}`}
-          >
-            Shop
-          </Link>
         </nav>
 
         {/* Right: Menu Trigger + Inquire CTA */}
