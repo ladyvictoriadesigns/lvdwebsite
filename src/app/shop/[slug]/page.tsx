@@ -121,7 +121,7 @@ export default async function ProductPage({
                 </div>
               )}
 
-              <AddToCart slug={product.slug} isPreSale={isPreSale} />
+              <AddToCart slug={product.slug} isPreSale={isPreSale} paymentLink={product.paymentLink} dueToday={dueToday(product)} />
 
               <p className="font-body text-xs text-ink/50 leading-relaxed mt-8 max-w-md">
                 Questions about a piece, quantities for an event, or styling advice?{" "}

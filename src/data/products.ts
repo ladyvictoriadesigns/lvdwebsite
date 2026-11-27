@@ -13,12 +13,14 @@ export interface Product {
   description: string;
   image: string;
   imageAlt: string;
+  paymentLink: string;
   gallery?: string[];
 }
 
 export const PRE_SALE_PRODUCTS: Product[] = [
   {
     slug: "fisher-pedestal-bowl-white",
+    paymentLink: "https://buy.stripe.com/dRmaEXg6Sdd57sD9Es4sE00",
     name: "Fisher Pedestal Bowl — White",
     price: 59.99,
     availability: "pre-sale",
@@ -33,6 +35,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   },
   {
     slug: "fisher-pedestal-bowl-black",
+    paymentLink: "https://buy.stripe.com/7sY14n7Amb4X5kv5oc4sE01",
     name: "Fisher Pedestal Bowl — Black",
     price: 59.99,
     availability: "pre-sale",
@@ -47,6 +50,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   },
   {
     slug: "crystal-lamp-shades-small-set",
+    paymentLink: "https://buy.stripe.com/9B628r4oac913cng2Q4sE02",
     name: "Crystal Lamp Shades — Small Set of 3",
     price: 69.99,
     availability: "pre-sale",
@@ -61,6 +65,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   },
   {
     slug: "crystal-lamp-shades-large-set",
+    paymentLink: "https://buy.stripe.com/8x228r7Am7SLbIT8Ao4sE03",
     name: "Crystal Lamp Shades — Large Set of 3",
     price: 149.99,
     availability: "pre-sale",
@@ -75,6 +80,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   },
   {
     slug: "round-mirror-centerpiece-riser-gold",
+    paymentLink: "https://buy.stripe.com/7sY3cv8Eqeh9bIT6sg4sE04",
     name: "Round Mirror Centerpiece Riser — Gold",
     price: 119.99,
     availability: "pre-sale",
@@ -88,6 +94,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   },
   {
     slug: "tall-glass-hurricane-taper-holders-set",
+    paymentLink: "https://buy.stripe.com/cNi00j9Iu6OH3cng2Q4sE05",
     name: "Tall Glass Hurricane Taper Holders, Set of 3",
     price: 54.99,
     availability: "pre-sale",
@@ -101,6 +108,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   },
   {
     slug: "glass-candle-holder-set-medium",
+    paymentLink: "https://buy.stripe.com/3cI28rbQC1uncMXbMA4sE06",
     name: "Glass Candle Holder Set of 3 — Medium",
     price: 49.99,
     availability: "pre-sale",
@@ -115,6 +123,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   },
   {
     slug: "stemmed-floating-candle-holders-set",
+    paymentLink: "https://buy.stripe.com/3cIcN5f2O6OHbIT3g44sE07",
     name: "Stemmed Floating Candle Holders, Set of 3",
     price: 24.99,
     availability: "pre-sale",
@@ -131,6 +140,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
 export const AVAILABLE_PRODUCTS: Product[] = [
   {
     slug: "classic-tripod-vase",
+    paymentLink: "https://buy.stripe.com/6oU14n4oa2yraEPcQE4sE08",
     name: "Classic Tripod Vase",
     price: 89.99,
     availability: "available",
@@ -142,6 +152,7 @@ export const AVAILABLE_PRODUCTS: Product[] = [
   },
   {
     slug: "hexagonal-clear-acrylic-block",
+    paymentLink: "https://buy.stripe.com/7sYeVd9Iuc91aEP03S4sE09",
     name: "Hexagonal Clear Acrylic Block",
     price: 59.99,
     availability: "available",
@@ -153,6 +164,7 @@ export const AVAILABLE_PRODUCTS: Product[] = [
   },
   {
     slug: "round-glass-bud-vase",
+    paymentLink: "https://buy.stripe.com/7sYcN56widd5aEP6sg4sE0a",
     name: "Round Glass Bud Vase",
     price: 59.99,
     availability: "available",

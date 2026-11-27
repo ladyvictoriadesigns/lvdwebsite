@@ -4,7 +4,17 @@ import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/components/shop/CartProvider";
 
-export default function AddToCart({ slug, isPreSale }: { slug: string; isPreSale: boolean }) {
+export default function AddToCart({
+  slug,
+  isPreSale,
+  paymentLink,
+  dueToday,
+}: {
+  slug: string;
+  isPreSale: boolean;
+  paymentLink: string;
+  dueToday: number;
+}) {
   const { add } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
@@ -56,6 +66,19 @@ export default function AddToCart({ slug, isPreSale }: { slug: string; isPreSale
           </Link>
         </p>
       )}
+
+      <a
+        href={paymentLink}
+        className="block text-center bg-gold text-ink font-body text-[10px] uppercase tracking-[0.2em] px-8 py-4 hover:bg-ink hover:text-ivory transition-colors"
+      >
+        {isPreSale
+          ? `Pay Deposit by Card — $${dueToday.toFixed(2)}`
+          : `Buy Now by Card — $${dueToday.toFixed(2)}`}
+      </a>
+      <p className="font-body text-xs text-ink/60">
+        Secure checkout by Stripe{isPreSale ? " — the deposit is per piece" : ""}. Choose your quantity on the
+        payment page.
+      </p>
     </div>
   );
 }
