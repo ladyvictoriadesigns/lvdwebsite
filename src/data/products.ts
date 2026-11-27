@@ -197,3 +197,10 @@ export function dueToday(product: Product): number {
 export function balanceOnArrival(product: Product): number {
   return product.price - dueToday(product);
 }
+
+// Meta Commerce catalog content IDs -> site product slugs.
+// Used by the /checkout endpoint Meta redirects shop customers to.
+export const META_CONTENT_ID_TO_SLUG: Record<string, string> = {
+  "30532247669698437": "fisher-pedestal-bowl-white",
+  "29159250657078240": "fisher-pedestal-bowl-black",
+};
