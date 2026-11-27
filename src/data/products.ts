@@ -94,11 +94,11 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   },
   {
     slug: "tall-glass-hurricane-taper-holders-set",
-    paymentLink: "https://buy.stripe.com/cNi00j9Iu6OH3cng2Q4sE05",
+    paymentLink: "https://buy.stripe.com/8x200j2g2fld7sD5oc4sE0b",
     name: "Tall Glass Hurricane Taper Holders, Set of 3",
-    price: 54.99,
+    price: 69.99,
     availability: "pre-sale",
-    deposit: 27.5,
+    deposit: 35,
     details: ["Set of three", "Tall glass hurricanes", "Shields and lengthens the flame"],
     description:
       "Tall glass hurricanes that shelter taper flames and draw the eye upward. Grouped in threes, they give a table rhythm and height while keeping every candle burning clean and steady.",
