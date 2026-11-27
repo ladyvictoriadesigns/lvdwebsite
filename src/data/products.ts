@@ -123,11 +123,11 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   },
   {
     slug: "stemmed-floating-candle-holders-set",
-    paymentLink: "https://buy.stripe.com/3cIcN5f2O6OHbIT3g44sE07",
+    paymentLink: "https://buy.stripe.com/aFa3cvcUGgphdR1eYM4sE0c",
     name: "Stemmed Floating Candle Holders, Set of 3",
-    price: 24.99,
+    price: 39.99,
     availability: "pre-sale",
-    deposit: 12.5,
+    deposit: 20,
     details: ["Set of three", "Stemmed glass cups", "Made for floating candles"],
     description:
       "Stemmed glass cups made for floating candles, lifting a small flame to just the right height among the florals. A finishing detail that guests feel before they notice.",
