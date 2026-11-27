@@ -55,7 +55,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
     details: ["Set of three graduated shades", "Faceted crystal", "Designed to crown taper candles"],
     description:
       "A graduated trio of faceted crystal shades that crown taper candles with a soft, prismatic glow. In three heights, the set layers light across a table the way a stylist layers texture — quietly, and to beautiful effect.",
-    image: "/shop/lamp-shades-dahlia.jpg",
+    image: "/shop/lamp-shades-event.jpg",
     imageAlt: "Faceted crystal lamp shades glowing over taper candles",
     gallery: ["/shop/lamp-shades-small-trio.jpg"],
   },
@@ -69,7 +69,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
     details: ["Set of three graduated shades", "Faceted crystal", "Statement scale for tall tapers"],
     description:
       "The grander scale of a studio favorite: three faceted crystal shades in statement heights that crown tall tapers and turn candlelight into architecture. Made for head tables, mantels, and rooms that ask for presence.",
-    image: "/shop/lamp-shades-event.jpg",
+    image: "/shop/lamp-shades-dahlia.jpg",
     imageAlt: "Faceted crystal lamp shades glowing over taper candles",
     gallery: ["/shop/lamp-shades-large-sizes.jpg"],
   },
@@ -97,6 +97,33 @@ export const PRE_SALE_PRODUCTS: Product[] = [
       "Tall glass hurricanes that shelter taper flames and draw the eye upward. Grouped in threes, they give a table rhythm and height while keeping every candle burning clean and steady.",
     image: "/shop/hurricane-taper-holders.jpg",
     imageAlt: "Tall glass hurricane taper candle holders",
+  },
+  {
+    slug: "glass-candle-holder-set-medium",
+    name: "Glass Candle Holder Set of 3 — Medium",
+    price: 49.99,
+    availability: "pre-sale",
+    deposit: 25.0,
+    size: "35, 40, and 45 cm",
+    details: ["Set of three graduated heights", "Clear glass", "For pillars and tapers alike"],
+    description:
+      "A graduated set of clear glass candle holders in three medium heights. The varied levels let candlelight move across a table in steps — the simplest way to make a setting feel considered.",
+    image: "/shop/medium-holders-trio.jpg",
+    imageAlt: "Glass candle holders in graduated heights",
+    gallery: ["/shop/medium-holders-lit.jpg"],
+  },
+  {
+    slug: "stemmed-floating-candle-holders-set",
+    name: "Stemmed Floating Candle Holders, Set of 3",
+    price: 24.99,
+    availability: "pre-sale",
+    deposit: 12.5,
+    details: ["Set of three", "Stemmed glass cups", "Made for floating candles"],
+    description:
+      "Stemmed glass cups made for floating candles, lifting a small flame to just the right height among the florals. A finishing detail that guests feel before they notice.",
+    image: "/shop/floating-holders-event.jpg",
+    imageAlt: "Stemmed floating candle holders",
+    gallery: ["/shop/floating-candle-holders.jpg"],
   },
 ];
 
@@ -133,31 +160,6 @@ export const AVAILABLE_PRODUCTS: Product[] = [
       "A round glass bud vase with a delicate ring silhouette, made for a single stem. Scattered down a table, a few blooms, beautifully spaced, can say more than an arrangement.",
     image: "/shop/bud-vases.jpg",
     imageAlt: "Round glass bud vase",
-  },
-  {
-    slug: "glass-candle-holder-set-medium",
-    name: "Glass Candle Holder Set of 3 — Medium",
-    price: 49.99,
-    availability: "available",
-    size: "35, 40, and 45 cm",
-    details: ["Set of three graduated heights", "Clear glass", "For pillars and tapers alike"],
-    description:
-      "A graduated set of clear glass candle holders in three medium heights. The varied levels let candlelight move across a table in steps — the simplest way to make a setting feel considered.",
-    image: "/shop/medium-holders-trio.jpg",
-    imageAlt: "Glass candle holders in graduated heights",
-    gallery: ["/shop/medium-holders-lit.jpg"],
-  },
-  {
-    slug: "stemmed-floating-candle-holders-set",
-    name: "Stemmed Floating Candle Holders, Set of 3",
-    price: 24.99,
-    availability: "available",
-    details: ["Set of three", "Stemmed glass cups", "Made for floating candles"],
-    description:
-      "Stemmed glass cups made for floating candles, lifting a small flame to just the right height among the florals. A finishing detail that guests feel before they notice.",
-    image: "/shop/floating-holders-event.jpg",
-    imageAlt: "Stemmed floating candle holders",
-    gallery: ["/shop/floating-candle-holders.jpg"],
   },
 ];
 
