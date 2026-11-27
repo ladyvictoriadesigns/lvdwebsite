@@ -1,0 +1,27 @@
+.panel { margin: 0 0 1.6rem; border: 1px solid #ded5c7; border-radius: 6px; background: #fffdfa; color: #2e2923; }
+.panel summary { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; cursor: pointer; list-style: none; }
+.panel summary::-webkit-details-marker { display: none; }
+.panel summary::after { content: "Show"; margin-left: auto; color: #8a6d38; font-size: 0.8rem; font-weight: 600; }
+.panel[open] summary::after { content: "Hide"; }
+.panel summary b { font-family: var(--font-bodoni); font-size: 1.15rem; font-weight: 500; }
+.flag { border: 1px solid #c9a96a; border-radius: 999px; padding: 0.15rem 0.6rem; background: #faf4e7; color: #7a5d2a; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.count { color: #6f675c; font-size: 0.85rem; }
+.help { margin: 0 1.25rem 0.75rem; color: #6f675c; font-size: 0.85rem; line-height: 1.5; }
+.empty { margin: 0 1.25rem 1.1rem; color: #6f675c; }
+.list { margin: 0; padding: 0; list-style: none; border-top: 1px solid #ece4d6; }
+.row { display: grid; grid-template-columns: minmax(10rem, 1.1fr) minmax(10rem, 1fr) minmax(12rem, 2fr) minmax(8rem, 0.9fr); gap: 1rem; align-items: start; padding: 0.9rem 1.25rem; border-bottom: 1px solid #ece4d6; font-size: 0.88rem; }
+.row:last-child { border-bottom: 0; }
+.who { display: grid; gap: 0.25rem; }
+.who b { font-family: var(--font-bodoni); font-size: 1.05rem; font-weight: 500; }
+.formName { color: #6f675c; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.stopped { color: #7a5d2a; font-size: 0.8rem; font-weight: 600; }
+.contact { display: grid; gap: 0.25rem; min-width: 0; }
+.contact a { color: #2e2923; overflow-wrap: anywhere; }
+.details { display: grid; gap: 0.3rem; color: #39342e; line-height: 1.45; }
+.services { color: #6f675c; }
+.vision { color: #595249; font-family: var(--font-bodoni); font-style: italic; }
+.time { color: #6f675c; font-size: 0.8rem; }
+.muted { color: #a39a8d; }
+@media (max-width: 900px) {
+  .row { grid-template-columns: 1fr; gap: 0.4rem; }
+}

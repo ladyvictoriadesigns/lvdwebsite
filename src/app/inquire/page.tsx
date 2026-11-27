@@ -8,6 +8,7 @@ import Image from "next/image";
 import { media } from "@/lib/media-slots";
 import { INQUIRY_INVESTMENTS } from "@/data/inquiry-investments";
 import { submitLead } from "@/lib/lead-submit";
+import { useLeadDraft } from "@/lib/use-lead-draft";
 import { useRouter } from "next/navigation";
 
 type FormData = {
@@ -45,6 +46,9 @@ export default function InquirePage() {
   const [attachments, setAttachments] = useState<File[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+
+  // Partial inquiry autosave (see src/lib/use-lead-draft.ts).
+  const leadDraft = useLeadDraft({ form: "inquire", step: Math.min(step, 5), fields: formData });
 
   const isInitialMount = useRef(true);
 
@@ -98,6 +102,7 @@ export default function InquirePage() {
     e.preventDefault();
     setSubmitError("");
     setIsSubmitting(true);
+    leadDraft.pause();
 
     try {
       const uploadedUrls: string[] = [];
@@ -137,9 +142,12 @@ export default function InquirePage() {
         referralSource: formData.source,
         attachments: uploadedUrls,
         payload: formData,
+        ...leadDraft.submitFields(),
       });
+      leadDraft.finish();
       router.push("/thank-you");
     } catch (error) {
+      leadDraft.resume();
       setSubmitError(error instanceof Error ? error.message : "Could not submit your inquiry. Please try again.");
     } finally {
       setIsSubmitting(false);

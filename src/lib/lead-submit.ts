@@ -23,6 +23,9 @@ export type LeadSubmission = {
   quizResultTier?: string;
   attachments?: string[];
   payload?: Record<string, unknown>;
+  /** The form's autosave id and form name, so the server can mark that partial completed. */
+  draftId?: string;
+  draftForm?: string;
 };
 
 type SubmissionResult = { leadId: string; notificationSent: false; notificationStatus: "queued" | "not_configured"; trackingEligible: boolean; tourPath?: string };

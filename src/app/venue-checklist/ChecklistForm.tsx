@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { createPortal } from "react-dom";
 import { submitLead } from "@/lib/lead-submit";
+import { useLeadDraft } from "@/lib/use-lead-draft";
 import { trackMetaChecklistDownload } from "@/lib/meta-pixel";
 import styles from "./venue-checklist.module.css";
 
@@ -175,6 +176,14 @@ export default function ChecklistForm() {
   const [done, setDone] = useState(false);
   const [leadId, setLeadId] = useState("");
 
+  // Partial signup autosave (see src/lib/use-lead-draft.ts).
+  const leadDraft = useLeadDraft({
+    form: "venue_checklist",
+    step: 1,
+    fields: { name, email, investment: budget, venue: venue === "booked" ? "Already booked (not named)" : venue === "" ? "" : "Still looking" },
+    extra: { weddingYear: year, multicultural },
+  });
+
   const submit = async (event: FormEvent) => {
     event.preventDefault();
     if (saving) return;
@@ -182,6 +191,7 @@ export default function ChecklistForm() {
     if (!year || !budget || !venue || !multicultural) return setError("Please answer each question so we can send the right edition.");
     setError("");
     setSaving(true);
+    leadDraft.pause();
     const edition = multicultural === "yes" ? "multicultural" : "standard";
     try {
       // Mapped onto the inquiry columns the studio already sees: celebration, venue, budget.
@@ -197,7 +207,9 @@ export default function ChecklistForm() {
         venue: venue === "booked" ? "Already booked (not named)" : undefined,
         investment: budget,
         payload: { edition, venueStatus: venue, weddingYear: year },
+        ...leadDraft.submitFields(),
       });
+      leadDraft.finish();
       setLeadId(saved.leadId);
     } catch (saveError) {
       // The download matters more than the record: never hold the guide back over a failed save.
