@@ -47,7 +47,7 @@ export default function ProductGallery({ images, alt, isPreSale }: ProductGaller
                 fill
                 priority={i === 0}
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           ))}

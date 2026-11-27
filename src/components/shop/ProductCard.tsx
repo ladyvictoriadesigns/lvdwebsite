@@ -16,7 +16,7 @@ export default function ProductCard({ product }: { product: Product }) {
           alt={product.imageAlt}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+          className="object-contain"
         />
         {isPreSale && (
           <span className="absolute top-4 left-4 bg-ink text-ivory font-body text-[9px] uppercase tracking-[0.2em] px-3 py-1.5">
