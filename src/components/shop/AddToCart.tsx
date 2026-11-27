@@ -54,7 +54,7 @@ export default function AddToCart({
           onClick={handleAdd}
           className="flex-1 min-w-[200px] bg-ink text-ivory font-body text-[10px] uppercase tracking-[0.2em] px-8 py-4 hover:bg-gold hover:text-ink transition-colors cursor-pointer"
         >
-          {isPreSale ? "Add to Cart — Reserve with Deposit" : "Add to Cart"}
+          {isPreSale ? "Add to Cart to Reserve" : "Add to Cart"}
         </button>
       </div>
 
@@ -72,11 +72,11 @@ export default function AddToCart({
         className="block text-center bg-gold text-ink font-body text-[10px] uppercase tracking-[0.2em] px-8 py-4 hover:bg-ink hover:text-ivory transition-colors"
       >
         {isPreSale
-          ? `Pay Deposit by Card — $${dueToday.toFixed(2)}`
-          : `Buy Now by Card — $${dueToday.toFixed(2)}`}
+          ? `Pay Deposit by Card · $${dueToday.toFixed(2)}`
+          : `Buy Now by Card · $${dueToday.toFixed(2)}`}
       </a>
       <p className="font-body text-xs text-ink/60">
-        Secure checkout by Stripe{isPreSale ? " — the deposit is per piece" : ""}. Choose your quantity on the
+        Secure checkout by Stripe{isPreSale ? ". The deposit is per piece" : ""}. Choose your quantity on the
         payment page.
       </p>
     </div>

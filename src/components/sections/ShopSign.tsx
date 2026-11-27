@@ -15,7 +15,7 @@ export default function ShopSign() {
           </h2>
           <p className="font-body text-ink/70 leading-relaxed text-sm md:text-base max-w-md mb-10">
             The pedestal bowls, crystal shades, risers, and candlelight pieces that shape our
-            tablescapes — now offered for your own celebrations and home. Reserve pre-sale pieces
+            tablescapes, now offered for your own celebrations and home. Reserve pre-sale pieces
             with a deposit, or bring home what is in the studio today.
           </p>
           <div>

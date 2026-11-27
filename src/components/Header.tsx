@@ -122,7 +122,9 @@ export default function Header() {
     pathname?.startsWith("/services") ||
     pathname?.startsWith("/planning") ||
     pathname?.startsWith("/packages") ||
-    pathname?.startsWith("/shop") ||
+    // The shop landing page has a photo hero, so only its inner pages are light.
+    pathname?.startsWith("/shop/") ||
+    pathname?.startsWith("/checkout") ||
     pathname?.startsWith("/thank-you");
 
   // Update active preview image based on route

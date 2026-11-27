@@ -26,7 +26,7 @@ export default function CartView() {
     const items = lines
       .map((line) => `${line.quantity} × ${line.product.name} (${formatPrice(line.product.price)} each)`)
       .join("; ");
-    return `Shop reservation: ${items}. Total ${formatPrice(totals.total)} — ${formatPrice(totals.dueToday)} due today${
+    return `Shop reservation: ${items}. Total ${formatPrice(totals.total)}, ${formatPrice(totals.dueToday)} due today${
       totals.onArrival > 0 ? `, ${formatPrice(totals.onArrival)} due on arrival (Spring 2027 pre-sale)` : ""
     }.`;
   }, [lines, totals]);
@@ -177,8 +177,8 @@ export default function CartView() {
             </span>
             <p className="font-body text-xs text-ink/75 leading-relaxed">
               Online payment for the shop is being set up and opens soon. To reserve these pieces today, send
-              the studio your reservation through the inquiry form — your pieces and deposit details below will
-              travel with the message — and Irene will confirm your reservation personally.
+              the studio your reservation through the inquiry form. Your pieces and deposit details below will
+              travel with the message, and Irene will confirm your reservation personally.
             </p>
             <p className="font-body text-xs text-ink/60 leading-relaxed border-t border-ink/10 pt-3">
               {reservationSummary}

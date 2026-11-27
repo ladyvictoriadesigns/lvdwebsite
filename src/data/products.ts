@@ -13,6 +13,10 @@ export interface Product {
   description: string;
   image: string;
   imageAlt: string;
+  /** Where the grid crop sits on the cover photo (CSS object-position). Default: center. */
+  imagePosition?: string;
+  /** Plain product photo shown when you point at a grid card. Default: the first gallery photo. */
+  hoverImage?: string;
   paymentLink: string;
   gallery?: string[];
 }
@@ -21,7 +25,7 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   {
     slug: "fisher-pedestal-bowl-white",
     paymentLink: "https://buy.stripe.com/dRmaEXg6Sdd57sD9Es4sE00",
-    name: "Fisher Pedestal Bowl — White",
+    name: "Fisher Pedestal Bowl, White",
     price: 59.99,
     availability: "pre-sale",
     deposit: 30.0,
@@ -36,37 +40,38 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   {
     slug: "fisher-pedestal-bowl-black",
     paymentLink: "https://buy.stripe.com/7sY14n7Amb4X5kv5oc4sE01",
-    name: "Fisher Pedestal Bowl — Black",
+    name: "Fisher Pedestal Bowl, Black",
     price: 59.99,
     availability: "pre-sale",
     deposit: 30.0,
     size: "25 × 25 cm (about 10 × 10 in)",
     details: ["Porcelain", "Fluted pedestal silhouette", "Finished in black"],
     description:
-      "A sculptural porcelain bowl with fine vertical fluting, raised on a pedestal foot. In black, the silhouette turns graphic and modern — a striking vessel for florals, fruit, or candlelight, and a dramatic counterpoint on a pale table.",
-    image: "/shop/fisher-bowl-black.jpg",
-    imageAlt: "Black fluted porcelain pedestal bowl",
-    gallery: ["/shop/fisher-bowls-pair.jpg"],
+      "A sculptural porcelain bowl with fine vertical fluting, raised on a pedestal foot. In black, the silhouette turns graphic and modern: a striking vessel for florals, fruit, or candlelight, and a dramatic counterpoint on a pale table.",
+    image: "/shop/fisher-bowls-pair.jpg",
+    imageAlt: "Black and white fluted porcelain pedestal bowls",
+    gallery: ["/shop/fisher-bowl-black.jpg"],
   },
   {
     slug: "crystal-lamp-shades-small-set",
     paymentLink: "https://buy.stripe.com/9B628r4oac913cng2Q4sE02",
-    name: "Crystal Lamp Shades — Small Set of 3",
+    name: "Crystal Lamp Shades, Small Set of 3",
     price: 69.99,
     availability: "pre-sale",
     deposit: 35.0,
     size: "Shades of 42, 47, and 52 cm",
     details: ["Set of three graduated shades", "Faceted crystal", "Designed to crown taper candles"],
     description:
-      "A graduated trio of faceted crystal shades that crown taper candles with a soft, prismatic glow. In three heights, the set layers light across a table the way a stylist layers texture — quietly, and to beautiful effect.",
+      "A graduated trio of faceted crystal shades that crown taper candles with a soft, prismatic glow. In three heights, the set layers light across a table the way a stylist layers texture: quietly, and to beautiful effect.",
     image: "/shop/lamp-shades-red-table.jpg",
     imageAlt: "Faceted crystal lamp shades glowing over taper candles",
+    hoverImage: "/shop/lamp-shades-small-trio.jpg",
     gallery: ["/shop/lamp-shades-event.jpg", "/shop/lamp-shades-small-trio.jpg"],
   },
   {
     slug: "crystal-lamp-shades-large-set",
     paymentLink: "https://buy.stripe.com/8x228r7Am7SLbIT8Ao4sE03",
-    name: "Crystal Lamp Shades — Large Set of 3",
+    name: "Crystal Lamp Shades, Large Set of 3",
     price: 149.99,
     availability: "pre-sale",
     deposit: 75.0,
@@ -76,20 +81,22 @@ export const PRE_SALE_PRODUCTS: Product[] = [
       "The grander scale of a studio favorite: three faceted crystal shades in statement heights that crown tall tapers and turn candlelight into architecture. Made for head tables, mantels, and rooms that ask for presence.",
     image: "/shop/lamp-shades-white-room.jpg",
     imageAlt: "Faceted crystal lamp shades glowing over taper candles",
+    hoverImage: "/shop/lamp-shades-large-sizes.jpg",
     gallery: ["/shop/lamp-shades-dahlia.jpg", "/shop/lamp-shades-large-sizes.jpg"],
   },
   {
     slug: "round-mirror-centerpiece-riser-gold",
     paymentLink: "https://buy.stripe.com/7sY3cv8Eqeh9bIT6sg4sE04",
-    name: "Round Mirror Centerpiece Riser — Gold",
+    name: "Round Mirror Centerpiece Riser, Gold",
     price: 119.99,
     availability: "pre-sale",
     deposit: 60.0,
     details: ["Mirrored surface", "Gold finish only", "Made for centerpieces and candle groupings"],
     description:
-      "A round mirrored riser with a gilded edge that lifts a centerpiece and doubles its candlelight. The reflection does the quiet work — florals read fuller, flames read warmer, and the whole table glows. Offered in the gold finish only.",
+      "A round mirrored riser with a gilded edge that lifts a centerpiece and doubles its candlelight. The reflection does the quiet work. Florals read fuller, flames read warmer, and the whole table glows. Offered in the gold finish only.",
     image: "/shop/mirror-riser-event.jpg",
     imageAlt: "Round gold mirror centerpiece riser",
+    hoverImage: "/shop/mirror-riser-gold-full.jpg",
     gallery: ["/shop/mirror-riser-gold-close.jpg", "/shop/mirror-riser-vendor.jpg", "/shop/mirror-riser-gold-full.jpg"],
   },
   {
@@ -109,14 +116,14 @@ export const PRE_SALE_PRODUCTS: Product[] = [
   {
     slug: "glass-candle-holder-set-medium",
     paymentLink: "https://buy.stripe.com/3cI28rbQC1uncMXbMA4sE06",
-    name: "Glass Candle Holder Set of 3 — Medium",
+    name: "Glass Candle Holder Set of 3, Medium",
     price: 49.99,
     availability: "pre-sale",
     deposit: 25.0,
     size: "35, 40, and 45 cm",
     details: ["Set of three graduated heights", "Clear glass", "For pillars and tapers alike"],
     description:
-      "A graduated set of clear glass candle holders in three medium heights. The varied levels let candlelight move across a table in steps — the simplest way to make a setting feel considered.",
+      "A graduated set of clear glass candle holders in three medium heights. The varied levels let candlelight move across a table in steps. It's the simplest way to make a setting feel considered.",
     image: "/shop/medium-holders-event.jpg",
     imageAlt: "Glass candle holders in graduated heights",
     gallery: ["/shop/medium-holders-trio.jpg", "/shop/medium-holders-lit.jpg"],
@@ -147,7 +154,8 @@ export const AVAILABLE_PRODUCTS: Product[] = [
     details: ["Tripod-footed silhouette", "A timeless vessel for tall arrangements"],
     description:
       "A classic vase raised on three feet, with the balanced proportions that have carried beautiful arrangements for generations. Equally at home with branches, orchids, or a loose gathering of garden roses.",
-    image: "/shop/classic-tripod-vase.jpg",
+    image: "/shop/classic-tripod-vase-clean.jpg",
+    imagePosition: "center 70%",
     imageAlt: "Classic tripod vase",
   },
   {
@@ -158,7 +166,7 @@ export const AVAILABLE_PRODUCTS: Product[] = [
     availability: "available",
     details: ["Clear acrylic", "Six-sided geometric form", "Adds height without visual weight"],
     description:
-      "A six-sided clear block that adds height to a tablescape without adding visual weight. Use it to lift a vase, a candle grouping, or a single sculptural object — the light passes through, and the styling reads effortless.",
+      "A six-sided clear block that adds height to a tablescape without adding visual weight. Use it to lift a vase, a candle grouping, or a single sculptural object. The light passes through, and the styling reads effortless.",
     image: "/shop/acrylic-block.jpg",
     imageAlt: "Hexagonal clear acrylic block",
   },

@@ -73,7 +73,7 @@ export default async function CheckoutPage({
             <div className="border border-ink/15 bg-white/60 p-8 md:p-12">
               <p className="font-body text-base text-ink/80 mb-8">
                 This checkout link did not include any pieces. Browse the collection and choose the pieces you
-                love — each product page has its own secure card checkout.
+                love. Each product page has its own secure card checkout.
               </p>
               <Link
                 href="/shop"
@@ -109,7 +109,7 @@ export default async function CheckoutPage({
                         </p>
                         {line.product.availability === "pre-sale" && (
                           <p className="font-body text-sm text-ink/70">
-                            Pre-sale — {formatPrice(dueToday(line.product))} deposit per piece today,{" "}
+                            Pre-sale: {formatPrice(dueToday(line.product))} deposit per piece today,{" "}
                             {formatPrice(balanceOnArrival(line.product))} due when it arrives in Spring 2027.
                           </p>
                         )}
@@ -130,7 +130,7 @@ export default async function CheckoutPage({
                   ) : (
                     <div key={i} className="py-6">
                       <p className="font-body text-sm text-ink/70">
-                        Shop piece (reference {line.contentId}) · Quantity {line.quantity} — find it in{" "}
+                        Shop piece (reference {line.contentId}) · Quantity {line.quantity}. Find it in{" "}
                         <Link href="/shop" className="text-gold underline underline-offset-4">
                           the collection
                         </Link>
@@ -153,12 +153,12 @@ export default async function CheckoutPage({
                 <p className="font-display text-3xl text-ink mt-2">Due today: {formatPrice(dueTotal)}</p>
                 {params.coupon && (
                   <p className="font-body text-sm text-ink/70">
-                    Coupon noted: {params.coupon} — mention it when you pay and it will be honored on your
+                    Coupon noted: {params.coupon}. Mention it when you pay and it will be honored on your
                     order.
                   </p>
                 )}
                 <p className="font-body text-sm text-ink/60 mt-4 max-w-[560px] text-right">
-                  Pay each piece securely by card with its button above — choose the same quantity on the
+                  Pay each piece securely by card with its button above, and choose the same quantity on the
                   payment page. Maryland sales tax is calculated at payment for Maryland addresses. Prefer to
                   reserve everything together first?{" "}
                   <Link href="/shop/cart" className="text-gold underline underline-offset-4">

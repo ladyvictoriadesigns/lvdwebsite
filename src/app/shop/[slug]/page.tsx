@@ -61,7 +61,7 @@ export default async function ProductPage({
           </Link>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mt-8">
-            {/* IMAGES — studio picture first, then the product picture scrolls across to the right */}
+            {/* IMAGES: studio picture first, then the product picture scrolls across to the right */}
             <ProductGallery images={images} alt={product.imageAlt} isPreSale={isPreSale} />
 
             {/* DETAILS */}
@@ -110,7 +110,7 @@ export default async function ProductPage({
                   </span>
                   <ul className="flex flex-col gap-2 font-body text-sm text-ink/80 leading-relaxed">
                     <li>
-                      Reserve today with a deposit of {formatPrice(dueToday(product))} per piece — half the{" "}
+                      Reserve today with a deposit of {formatPrice(dueToday(product))} per piece, half the{" "}
                       {formatPrice(product.price)} price.
                     </li>
                     <li>

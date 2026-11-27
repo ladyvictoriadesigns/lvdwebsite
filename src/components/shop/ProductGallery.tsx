@@ -68,7 +68,7 @@ export default function ProductGallery({ images, alt, isPreSale }: ProductGaller
         )}
 
         {hasMultiple && index < images.length - 1 && (
-          <button type="button" aria-label="Next picture — scroll across" onClick={() => scrollTo(index + 1)} className={`${arrowButton} right-3 animate-pulse`}>
+          <button type="button" aria-label="Next picture" onClick={() => scrollTo(index + 1)} className={`${arrowButton} right-3 animate-pulse`}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

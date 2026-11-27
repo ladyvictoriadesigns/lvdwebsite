@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Contact from "@/components/sections/Contact";
 import ProductCard from "@/components/shop/ProductCard";
 import { AVAILABLE_PRODUCTS, PRE_SALE_PRODUCTS } from "@/data/products";
@@ -6,34 +7,62 @@ import { AVAILABLE_PRODUCTS, PRE_SALE_PRODUCTS } from "@/data/products";
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Shop the Lady Victoria Designs collection — pedestal bowls, crystal lamp shades, risers, vases, and candlelight pieces for celebrations and home. Pre-sale pieces arriving Spring 2027 can be reserved with a deposit.",
+    "Shop the Lady Victoria Designs collection: pedestal bowls, crystal lamp shades, risers, vases, and candlelight pieces for celebrations and home. Pre-sale pieces arriving Spring 2027 can be reserved with a deposit.",
   alternates: { canonical: "/shop" },
 };
 
 export default function ShopPage() {
   return (
     <main className="w-full bg-ivory text-ink flex flex-col relative">
-      {/* HERO */}
-      <section className="w-full flex flex-col justify-center items-center text-center px-6 md:px-12 pt-32 md:pt-44 pb-16 md:pb-24 border-b border-ink/20">
-        <div className="text-xs uppercase tracking-[0.2em] text-gold mb-6 font-body">THE SHOP</div>
-        <h1 className="font-display text-[clamp(2.5rem,6vw,6.5rem)] text-ink max-w-5xl mx-auto leading-tight mb-8">
-          Pieces the studio <span className="italic text-gold">loves</span>
-        </h1>
-        <p className="font-body text-ink/70 max-w-2xl mx-auto leading-relaxed text-sm md:text-base">
-          The vases, risers, and candlelight pieces that shape the studio&apos;s tablescapes — now offered for
-          your own celebrations and home. Pieces marked pre-sale arrive with the Spring 2027 shipment and can
-          be reserved today with a deposit; the balance is due when your pieces arrive.
-        </p>
+      {/* HERO: full photo, text bottom left, like the homepage */}
+      <section className="relative w-full min-h-[88svh] bg-ink overflow-hidden flex flex-col justify-end px-6 sm:px-10 md:px-12 pb-12 sm:pb-16">
+        <Image
+          src="/shop/fisher-bowl-white-event.jpg"
+          alt="A Lady Victoria Designs table with white Fisher pedestal bowls, crystal lamp shades, and candlelight"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          style={{ objectPosition: "center 55%" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/65 via-ink/25 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/45 to-transparent pointer-events-none" />
+
+        <div className="relative z-10 max-w-3xl flex flex-col items-start gap-5">
+          <div className="font-body text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-ivory/90">The Shop</div>
+          <h1 className="font-display text-[clamp(2.75rem,6vw,6rem)] leading-[0.95] text-ivory tracking-tight">
+            Pieces the studio <span className="italic">loves</span>
+          </h1>
+          <p className="font-body text-ivory/85 max-w-xl leading-relaxed text-sm md:text-base">
+            The vases, risers, and candlelight pieces from our tablescapes, now for your own celebrations and
+            home. Reserve pre-sale pieces with a deposit, or bring home what&apos;s in the studio today.
+          </p>
+          <div className="flex flex-wrap gap-3 mt-2">
+            <a
+              href="#pre-sale"
+              className="bg-ivory text-ink font-body text-[10px] uppercase tracking-[0.2em] px-7 py-4 hover:bg-gold transition-colors"
+            >
+              Shop Pre-Sale
+            </a>
+            <a
+              href="#available-now"
+              className="border border-ivory/70 text-ivory font-body text-[10px] uppercase tracking-[0.2em] px-7 py-4 hover:bg-ivory hover:text-ink transition-colors"
+            >
+              Available Now
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* PRE-SALE */}
-      <section className="w-full px-6 md:px-12 py-16 md:py-24 border-b border-ink/20">
+      <section id="pre-sale" className="scroll-mt-20 w-full px-6 md:px-12 py-16 md:py-24 border-b border-ink/20">
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-14">
             <div>
               <div className="font-body text-[10px] uppercase tracking-[0.2em] text-gold mb-4">RESERVE NOW</div>
               <h2 className="font-display text-4xl md:text-5xl text-ink leading-tight">
-                Pre-Sale — <span className="italic text-gold">Arriving Spring 2027</span>
+                Pre-Sale, <span className="italic text-gold">Arriving Spring 2027</span>
               </h2>
             </div>
             <p className="font-body text-sm text-ink/70 leading-relaxed max-w-md">
@@ -51,7 +80,7 @@ export default function ShopPage() {
       </section>
 
       {/* AVAILABLE NOW */}
-      <section className="w-full px-6 md:px-12 py-16 md:py-24 border-b border-ink/20">
+      <section id="available-now" className="scroll-mt-20 w-full px-6 md:px-12 py-16 md:py-24 border-b border-ink/20">
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-14">
             <div>
@@ -59,7 +88,7 @@ export default function ShopPage() {
               <h2 className="font-display text-4xl md:text-5xl text-ink leading-tight">Available Now</h2>
             </div>
             <p className="font-body text-sm text-ink/70 leading-relaxed max-w-md">
-              Ready to bring home today — the finishing pieces for a table that feels considered, layered, and
+              Ready to bring home today. The finishing pieces for a table that feels considered, layered, and
               lit beautifully.
             </p>
           </div>
