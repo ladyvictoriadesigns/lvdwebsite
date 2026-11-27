@@ -86,6 +86,18 @@ export const PRE_SALE_PRODUCTS: Product[] = [
     imageAlt: "Round gold mirror centerpiece riser",
     gallery: ["/shop/mirror-riser-gold-full.jpg"],
   },
+  {
+    slug: "tall-glass-hurricane-taper-holders-set",
+    name: "Tall Glass Hurricane Taper Holders, Set of 3",
+    price: 54.99,
+    availability: "pre-sale",
+    deposit: 27.5,
+    details: ["Set of three", "Tall glass hurricanes", "Shields and lengthens the flame"],
+    description:
+      "Tall glass hurricanes that shelter taper flames and draw the eye upward. Grouped in threes, they give a table rhythm and height while keeping every candle burning clean and steady.",
+    image: "/shop/hurricane-taper-holders.jpg",
+    imageAlt: "Tall glass hurricane taper candle holders",
+  },
 ];
 
 export const AVAILABLE_PRODUCTS: Product[] = [
@@ -121,17 +133,6 @@ export const AVAILABLE_PRODUCTS: Product[] = [
       "A round glass bud vase with a delicate ring silhouette, made for a single stem. Scattered down a table, a few blooms, beautifully spaced, can say more than an arrangement.",
     image: "/shop/bud-vases.jpg",
     imageAlt: "Round glass bud vase",
-  },
-  {
-    slug: "tall-glass-hurricane-taper-holders-set",
-    name: "Tall Glass Hurricane Taper Holders, Set of 3",
-    price: 54.99,
-    availability: "available",
-    details: ["Set of three", "Tall glass hurricanes", "Shields and lengthens the flame"],
-    description:
-      "Tall glass hurricanes that shelter taper flames and draw the eye upward. Grouped in threes, they give a table rhythm and height while keeping every candle burning clean and steady.",
-    image: "/shop/hurricane-taper-holders.jpg",
-    imageAlt: "Tall glass hurricane taper candle holders",
   },
   {
     slug: "glass-candle-holder-set-medium",
