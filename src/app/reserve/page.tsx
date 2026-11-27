@@ -9,6 +9,15 @@ import Magnetic from "@/components/Magnetic";
 import { media } from "@/lib/media-slots";
 import { INQUIRY_INVESTMENTS } from "@/data/inquiry-investments";
 import { submitLead } from "@/lib/lead-submit";
+import { trackMetaFormEvent } from "@/lib/meta-pixel";
+
+const FORM_STEP_NAMES: Record<number, string> = {
+  1: "celebration",
+  2: "venue_date_guests",
+  3: "services",
+  4: "vision_investment",
+  5: "contact",
+};
 
 const portfolioImages = [
   {
@@ -170,6 +179,44 @@ export default function ReservePage() {
     return () => observer.disconnect();
   }, [isReserveV2]);
 
+  // Form funnel tracking: FormView when the form is genuinely on screen,
+  // FormStart on the first interaction with it. Each fires once per page.
+  const formViewFired = useRef(false);
+  const formStartFired = useRef(false);
+
+  useEffect(() => {
+    const formSection = formSectionRef.current;
+    if (!formSection) return;
+
+    const viewObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !formViewFired.current) {
+          formViewFired.current = true;
+          trackMetaFormEvent("FormView", { page: pathname ?? "" });
+          viewObserver.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    viewObserver.observe(formSection);
+
+    const onFirstInteract = () => {
+      if (formStartFired.current) return;
+      formStartFired.current = true;
+      trackMetaFormEvent("FormStart", { page: pathname ?? "" });
+      formSection.removeEventListener("pointerdown", onFirstInteract);
+      formSection.removeEventListener("focusin", onFirstInteract);
+    };
+    formSection.addEventListener("pointerdown", onFirstInteract);
+    formSection.addEventListener("focusin", onFirstInteract);
+
+    return () => {
+      viewObserver.disconnect();
+      formSection.removeEventListener("pointerdown", onFirstInteract);
+      formSection.removeEventListener("focusin", onFirstInteract);
+    };
+  }, [pathname]);
+
   const scrollToForm = () => {
     const el = document.getElementById("reserve-form");
     if (el) {
@@ -180,6 +227,11 @@ export default function ReservePage() {
 
   const nextStep = () => {
     if (step < 5) {
+      trackMetaFormEvent("FormStep", {
+        step_number: step,
+        step_name: FORM_STEP_NAMES[step] ?? `step_${step}`,
+        page: pathname ?? "",
+      });
       setStep((prev) => prev + 1);
     }
   };

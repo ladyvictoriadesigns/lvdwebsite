@@ -30,6 +30,21 @@ export function trackMetaChecklistDownload(edition: string) {
   return true;
 }
 
+/**
+ * Funnel events for the inquiry form, so the drop-off between landing,
+ * seeing the form, starting it, and finishing each step is measurable.
+ * Custom events only — they never count as Leads. Shows in Events Manager
+ * as FormView / FormStart / FormStep.
+ */
+export function trackMetaFormEvent(
+  eventName: "FormView" | "FormStart" | "FormStep",
+  params?: Record<string, string | number>
+) {
+  if (!publicProductionPage() || typeof window.fbq !== "function") return false;
+  window.fbq("trackSingleCustom", META_PIXEL_ID, eventName, { content_name: "inquiry_form", ...params });
+  return true;
+}
+
 /** Only call with an ID returned after a successful database save. */
 export function trackMetaLead(source: MetaLeadSource, leadId: string) {
   if (!publicProductionPage() || typeof window.fbq !== "function" || !leadId) return false;
