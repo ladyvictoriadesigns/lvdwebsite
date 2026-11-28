@@ -113,22 +113,17 @@ export default function ShopPage() {
       </section>
 
       {/* PRE-SALE */}
-      <section id="pre-sale" className="scroll-mt-20 w-full px-6 md:px-12 py-16 md:py-24 border-b border-ink/20">
+      <section id="pre-sale" className="scroll-mt-20 w-full px-6 md:px-12 py-16 md:py-20">
         <div className="max-w-[1440px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-14">
-            <div>
-              <div className="font-body text-[10px] uppercase tracking-[0.2em] text-gold mb-4">RESERVE NOW</div>
-              <h2 className="font-display text-4xl md:text-5xl text-ink leading-tight">
-                Pre-Sale, <span className="italic text-gold">Arriving Spring 2027</span>
-              </h2>
-            </div>
-            <p className="font-body text-sm text-ink/70 leading-relaxed max-w-md">
-              Reserve each piece with a 50% deposit today. Deposits are non-refundable, and the balance is due
-              when your pieces arrive in Spring 2027.
-            </p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8 md:mb-10">
+            <h2 className="font-body text-[clamp(1.75rem,3.2vw,2.75rem)] font-semibold tracking-tight leading-[1.1] text-ink max-w-3xl">
+              Pre-sale.{" "}
+              <span className="text-ink/45">Reserve today, arriving Spring 2027.</span>
+            </h2>
+            <span className="font-body text-[13px] text-ink/55 shrink-0">{PRE_SALE_PRODUCTS.length} pieces</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 sm:gap-x-5 gap-y-8 sm:gap-y-10">
             {PRE_SALE_PRODUCTS.map((product) => (
               <ProductCard key={product.slug} product={product} />
             ))}
@@ -163,20 +158,17 @@ export default function ShopPage() {
       </section>
 
       {/* AVAILABLE NOW */}
-      <section id="available-now" className="scroll-mt-20 w-full px-6 md:px-12 py-16 md:py-24 border-b border-ink/20">
+      <section id="available-now" className="scroll-mt-20 w-full px-6 md:px-12 py-16 md:py-20">
         <div className="max-w-[1440px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-14">
-            <div>
-              <div className="font-body text-[10px] uppercase tracking-[0.2em] text-gold mb-4">IN THE STUDIO</div>
-              <h2 className="font-display text-4xl md:text-5xl text-ink leading-tight">Available Now</h2>
-            </div>
-            <p className="font-body text-sm text-ink/70 leading-relaxed max-w-md">
-              Ready to bring home today. The finishing pieces for a table that feels considered, layered, and
-              lit beautifully.
-            </p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8 md:mb-10">
+            <h2 className="font-body text-[clamp(1.75rem,3.2vw,2.75rem)] font-semibold tracking-tight leading-[1.1] text-ink max-w-3xl">
+              Available now.{" "}
+              <span className="text-ink/45">Ready to bring home today.</span>
+            </h2>
+            <span className="font-body text-[13px] text-ink/55 shrink-0">{AVAILABLE_PRODUCTS.length} pieces</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 sm:gap-x-5 gap-y-8 sm:gap-y-10">
             {AVAILABLE_PRODUCTS.map((product) => (
               <ProductCard key={product.slug} product={product} />
             ))}
