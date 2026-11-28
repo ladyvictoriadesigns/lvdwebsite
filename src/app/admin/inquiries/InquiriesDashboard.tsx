@@ -101,12 +101,15 @@ export default function InquiriesDashboard({
   initialSelectedId,
   portalMode = false,
   showAdReport = false,
+  partialsPanel,
 }: {
   initialLeads: AdminLead[];
   user: AdminUser;
   initialSelectedId?: string;
   portalMode?: boolean;
   showAdReport?: boolean;
+  /** Unfinished inquiries (server-rendered), shown under the summary cards. */
+  partialsPanel?: React.ReactNode;
 }) {
   const [leads, setLeads] = useState(initialLeads);
   const [selectedId, setSelectedId] = useState(initialSelectedId || "");
@@ -475,6 +478,7 @@ export default function InquiriesDashboard({
             <span>{card.label}</span><b>{card.key === "attention" ? attentionLeads.length : card.key === "unread" && !trackingAvailable ? "—" : counts[card.key]}</b><small>{card.hint}</small>
           </button>)}
         </section>
+        {partialsPanel}
         {!trackingAvailable && <p className={styles.trackingNotice}>View tracking is awaiting setup. Historical views are unavailable; notes and status filters still work.</p>}
         {!selected && (message || error) && <p className={error ? styles.toastError : styles.toast} role={error ? "alert" : "status"}>{error || message}</p>}
         <div className={styles.contentGrid}>

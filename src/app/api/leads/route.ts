@@ -6,6 +6,7 @@ import { sendChecklistEmail, tourPath } from "@/lib/checklist-emails";
 import { isMarketingSolicitation, type LeadNotification } from "@/lib/lead-quality";
 import { logCapiEvent } from "@/lib/admin-data";
 import { SERVER_LEAD_SOURCES, sendCapiEvent, websiteLeadEvent } from "@/lib/meta-ads";
+import { completeDraft, isDraftForm, isDraftId } from "@/lib/partial-leads";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 90;
@@ -39,6 +40,8 @@ type LeadRequest = {
   attachments?: unknown;
   payload?: unknown;
   attribution?: unknown;
+  draftId?: unknown;
+  draftForm?: unknown;
 };
 
 function stringValue(value: unknown) {
@@ -269,6 +272,20 @@ ${attachmentsList}
           }
         } catch (emailError) {
           console.error("Failed to send Gmail lead notification:", emailError);
+        }
+      });
+    }
+
+    // The form autosaved this inquiry as a partial while it was being filled in:
+    // mark that same row completed so it leaves the follow-up list. Never blocks the save.
+    if (leadId && isDraftId(body.draftId) && isDraftForm(body.draftForm)) {
+      const draftId = body.draftId;
+      const draftForm = body.draftForm;
+      after(async () => {
+        try {
+          await completeDraft(draftId, leadId, draftForm);
+        } catch {
+          console.error("Could not mark partial inquiry completed.", { leadId });
         }
       });
     }

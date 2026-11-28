@@ -10,6 +10,7 @@ import { media } from "@/lib/media-slots";
 import { INQUIRY_INVESTMENTS } from "@/data/inquiry-investments";
 import { submitLead } from "@/lib/lead-submit";
 import { trackMetaFormEvent } from "@/lib/meta-pixel";
+import { useLeadDraft } from "@/lib/use-lead-draft";
 
 const FORM_STEP_NAMES: Record<number, string> = {
   1: "celebration",
@@ -217,6 +218,9 @@ export default function ReservePage() {
     };
   }, [pathname]);
 
+  // Partial inquiry autosave (see src/lib/use-lead-draft.ts).
+  const leadDraft = useLeadDraft({ form: "reserve", step: Math.min(step, 5), fields: formData });
+
   const scrollToForm = () => {
     const el = document.getElementById("reserve-form");
     if (el) {
@@ -253,6 +257,7 @@ export default function ReservePage() {
     e.preventDefault();
     setSubmitError("");
     setIsSubmitting(true);
+    leadDraft.pause();
 
     try {
       const uploadedUrls: string[] = [];
@@ -287,9 +292,12 @@ export default function ReservePage() {
         referralSource: formData.source,
         attachments: uploadedUrls,
         payload: formData,
+        ...leadDraft.submitFields(),
       });
+      leadDraft.finish();
       router.push("/thank-you");
     } catch (error) {
+      leadDraft.resume();
       setSubmitError(error instanceof Error ? error.message : "Could not submit your inquiry. Please try again.");
     } finally {
       setIsSubmitting(false);

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { submitLead } from "@/lib/lead-submit";
+import { useLeadDraft } from "@/lib/use-lead-draft";
 import { useRouter } from "next/navigation";
 
 const ArrowLeft = ({ className = "w-4 h-4" }: { className?: string }) => (
@@ -206,6 +207,7 @@ export default function QuizClient() {
     e.preventDefault();
     setSubmitError("");
     setIsSubmitting(true);
+    leadDraft.pause();
 
     try {
       const result = calculateResult();
@@ -219,9 +221,12 @@ export default function QuizClient() {
         quizScore: score,
         quizResultTier: result.tier,
         payload: { formData, score, guestPoints, result },
+        ...leadDraft.submitFields(),
       });
+      leadDraft.finish();
       router.push("/thank-you");
     } catch (error) {
+      leadDraft.resume();
       setSubmitError(error instanceof Error ? error.message : "Could not submit your inquiry. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -229,6 +234,17 @@ export default function QuizClient() {
   };
 
   const currentResult = calculateResult();
+
+  // Partial inquiry autosave (see src/lib/use-lead-draft.ts). Only once they start
+  // typing contact details after seeing their result: anonymous quiz plays are not saved.
+  const startedContact = [formData.name, formData.email, formData.phone].some((value) => value.trim());
+  const leadDraft = useLeadDraft({
+    form: "style_quiz",
+    step: 8,
+    fields: { ...formData, investment: currentResult.range },
+    extra: { quizResultTier: currentResult.tier, quizScore: score },
+    enabled: isModalOpen && startedContact,
+  });
 
   return (
     <div className="min-h-screen w-full bg-ivory text-ink flex flex-col relative pt-32 pb-24">

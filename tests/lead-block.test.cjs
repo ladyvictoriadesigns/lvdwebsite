@@ -34,6 +34,7 @@ function setup() {
       if (name === '@/lib/attribution') return { attributionColumns: () => ({}) };
       // No Meta send here, so after() still counts only the notification email.
       if (name === '@/lib/meta-ads') return { SERVER_LEAD_SOURCES: new Set(), sendCapiEvent: async () => ({ skipped: true }), websiteLeadEvent: () => null };
+      if (name === '@/lib/partial-leads') return { completeDraft: async () => true, isDraftForm: () => false, isDraftId: () => false };
       if (name === '@/lib/admin-data') return { logCapiEvent: async () => {} };
       if (name === '@/lib/checklist-emails') return { sendChecklistEmail: async () => true, tourPath: id => `/venue-checklist/tour?id=${id}` };
       if (name === '@/lib/lead-quality') {

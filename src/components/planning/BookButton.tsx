@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { submitLead } from "@/lib/lead-submit";
+import { type DraftFields, useLeadDraft } from "@/lib/use-lead-draft";
 
 const BUDGET_RANGES = [
   "Not sure yet",
@@ -29,6 +30,25 @@ export default function BookButton({
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
+
+  // Partial booking autosave (see src/lib/use-lead-draft.ts). The form is uncontrolled,
+  // so its values are copied into state as the visitor types.
+  const [draft, setDraft] = useState<{ fields: DraftFields; bookedVendors: string }>({ fields: {}, bookedVendors: "" });
+  const leadDraft = useLeadDraft({
+    form: "planning_booking",
+    step: 1,
+    fields: draft.fields,
+    extra: { package: packageName, bookedVendors: draft.bookedVendors },
+    enabled: Object.values(draft.fields).some((value) => typeof value === "string" && value.trim()),
+  });
+  function readDraft(formElement: HTMLFormElement) {
+    const form = new FormData(formElement);
+    const value = (key: string) => String(form.get(key) || "");
+    setDraft({
+      fields: { name: value("name"), email: value("email"), phone: value("phone"), date: value("date"), venue: value("venue"), guestCount: value("guestCount"), investment: value("budget"), services: [packageName] },
+      bookedVendors: value("bookedVendors"),
+    });
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -67,6 +87,7 @@ export default function BookButton({
     const bookedVendors = String(form.get("bookedVendors") || "").trim();
     setError("");
     setStatus("sending");
+    leadDraft.pause();
 
     try {
       await submitLead({
@@ -81,9 +102,12 @@ export default function BookButton({
         investment: String(form.get("budget") || "") || undefined,
         services: [packageName],
         payload: { formType: "planning-booking", package: packageName, bookedVendors },
+        ...leadDraft.submitFields(),
       });
+      leadDraft.finish();
       setStatus("sent");
     } catch (submitError) {
+      leadDraft.resume();
       setStatus("idle");
       setError(submitError instanceof Error ? submitError.message : "Something went wrong. Please try again.");
     }
@@ -147,7 +171,7 @@ export default function BookButton({
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="px-7 md:px-9 py-9 md:py-11">
+              <form onSubmit={handleSubmit} onInput={(event) => readDraft(event.currentTarget)} onChange={(event) => readDraft(event.currentTarget)} className="px-7 md:px-9 py-9 md:py-11">
                 <div className="text-xs uppercase tracking-[0.2em] text-gold mb-3 font-body">Planning inquiry</div>
                 <h2 id={titleId} className="font-display text-3xl md:text-4xl leading-tight mb-2">
                   {packageName}
