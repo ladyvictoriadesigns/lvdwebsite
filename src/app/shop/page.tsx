@@ -136,6 +136,32 @@ export default function ShopPage() {
         </div>
       </section>
 
+      {/* PHOTO BREAK: one full-width photo between the two product grids */}
+      <section className="relative w-full h-[70svh] min-h-[420px] bg-ink overflow-hidden flex items-end px-6 sm:px-10 md:px-12 pb-10 md:pb-14">
+        <Image
+          src="/gallery/laura-ken/1sm08322.jpg"
+          alt="Tall white floral centerpieces glowing in a candlelit ballroom styled by Lady Victoria Designs"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          style={{ objectPosition: "center 50%" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-ink/20 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent pointer-events-none" />
+
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+          <h2 className="font-display text-ivory text-[clamp(2.5rem,5.5vw,5rem)] leading-[0.95] tracking-tight">
+            Styled by <span className="italic">the studio</span>
+          </h2>
+          <Link
+            href="/gallery"
+            className="self-start md:self-auto font-body text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-ivory underline underline-offset-4 decoration-ivory/50 hover:decoration-ivory transition-colors"
+          >
+            See our work
+          </Link>
+        </div>
+      </section>
+
       {/* AVAILABLE NOW */}
       <section id="available-now" className="scroll-mt-20 w-full px-6 md:px-12 py-16 md:py-24 border-b border-ink/20">
         <div className="max-w-[1440px] mx-auto">
