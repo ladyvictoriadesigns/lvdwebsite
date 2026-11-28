@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Contact from "@/components/sections/Contact";
 import ProductCard from "@/components/shop/ProductCard";
 import { AVAILABLE_PRODUCTS, PRE_SALE_PRODUCTS } from "@/data/products";
@@ -10,6 +11,34 @@ export const metadata: Metadata = {
     "Shop the Lady Victoria Designs collection: pedestal bowls, crystal lamp shades, risers, vases, and candlelight pieces for celebrations and home. Pre-sale pieces arriving Spring 2027 can be reserved with a deposit.",
   alternates: { canonical: "/shop" },
 };
+
+// The three-photo strip under the hero. Each photo opens the piece it shows.
+const PHOTO_TILES = [
+  {
+    title: "Candlelight",
+    link: "Shop the taper holders",
+    href: "/shop/tall-glass-hurricane-taper-holders-set",
+    src: "/shop/hurricane-tapers-event.jpg",
+    alt: "Tall glass hurricane taper holders lit along a white floral table",
+    position: "center",
+  },
+  {
+    title: "Crystal Lamp Shades",
+    link: "Shop the lamp shades",
+    href: "/shop/crystal-lamp-shades-small-set",
+    src: "/shop/lamp-shades-dahlia.jpg",
+    alt: "Three crystal lamp shades glowing over a table of dahlias and roses",
+    position: "center 30%",
+  },
+  {
+    title: "Risers & Bowls",
+    link: "Shop the mirror riser",
+    href: "/shop/round-mirror-centerpiece-riser-gold",
+    src: "/shop/mirror-riser-event.jpg",
+    alt: "A gold round mirror riser under a centerpiece of pink and red roses",
+    position: "center 45%",
+  },
+];
 
 export default function ShopPage() {
   return (
@@ -52,6 +81,34 @@ export default function ShopPage() {
               Available Now
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* PHOTO STRIP: three tall photos side by side (swipe on phones) */}
+      <section className="w-full px-6 md:px-12 pt-16 md:pt-24">
+        <div className="max-w-[1440px] mx-auto flex sm:grid sm:grid-cols-3 gap-4 md:gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory -mx-6 px-6 sm:mx-0 sm:px-0 [scrollbar-width:none]">
+          {PHOTO_TILES.map((tile) => (
+            <Link
+              key={tile.href}
+              href={tile.href}
+              className="group shrink-0 w-[78%] sm:w-auto snap-start flex flex-col"
+            >
+              <div className="relative aspect-[3/4] overflow-hidden bg-ecru">
+                <Image
+                  src={tile.src}
+                  alt={tile.alt}
+                  fill
+                  sizes="(min-width: 640px) 33vw, 78vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  style={{ objectPosition: tile.position }}
+                />
+              </div>
+              <h2 className="font-display text-2xl md:text-3xl text-ink mt-5">{tile.title}</h2>
+              <span className="font-body text-[10px] uppercase tracking-[0.2em] text-ink/70 mt-2 underline underline-offset-4 decoration-ink/30 group-hover:text-ink group-hover:decoration-ink transition-colors">
+                {tile.link}
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 
