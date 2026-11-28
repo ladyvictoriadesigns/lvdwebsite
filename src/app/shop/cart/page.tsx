@@ -3,7 +3,7 @@ import CartView from "@/components/shop/CartView";
 
 export const metadata: Metadata = {
   title: "Your Cart",
-  description: "Review your Lady Victoria Designs shop pieces and reserve them.",
+  description: "Review your Lady Victoria Designs shop pieces and check out by card.",
   alternates: { canonical: "/shop/cart" },
   robots: { index: false, follow: true },
 };

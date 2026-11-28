@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/components/shop/CartProvider";
@@ -8,7 +8,6 @@ import { balanceOnArrival, dueToday, formatPrice } from "@/data/products";
 
 export default function CartView() {
   const { lines, setQuantity, remove, clear } = useCart();
-  const [showReserveNote, setShowReserveNote] = useState(false);
 
   const totals = useMemo(() => {
     return lines.reduce(
@@ -20,16 +19,6 @@ export default function CartView() {
       { total: 0, dueToday: 0, onArrival: 0 },
     );
   }, [lines]);
-
-  const reservationSummary = useMemo(() => {
-    if (lines.length === 0) return "";
-    const items = lines
-      .map((line) => `${line.quantity} × ${line.product.name} (${formatPrice(line.product.price)} each)`)
-      .join("; ");
-    return `Shop reservation: ${items}. Total ${formatPrice(totals.total)} — ${formatPrice(totals.dueToday)} due today${
-      totals.onArrival > 0 ? `, ${formatPrice(totals.onArrival)} due on arrival (Spring 2027 pre-sale)` : ""
-    }.`;
-  }, [lines, totals]);
 
   if (lines.length === 0) {
     return (
@@ -138,7 +127,7 @@ export default function CartView() {
 
       {/* SUMMARY */}
       <aside className="border border-ink/20 p-8 h-fit flex flex-col gap-5 bg-ivory">
-        <h2 className="font-display text-2xl text-ink">Your Reservation</h2>
+        <h2 className="font-display text-2xl text-ink">Your Order</h2>
 
         <div className="flex flex-col gap-3 font-body text-sm">
           <div className="flex justify-between">
@@ -162,35 +151,31 @@ export default function CartView() {
           pre-sale piece. The remaining balance on pre-sale pieces is due when they arrive.
         </p>
 
-        <button
-          type="button"
-          onClick={() => setShowReserveNote(true)}
-          className="bg-ink text-ivory font-body text-[10px] uppercase tracking-[0.2em] px-8 py-4 hover:bg-gold hover:text-ink transition-colors cursor-pointer w-full"
-        >
-          Reserve Your Pieces
-        </button>
+        <div className="flex flex-col gap-3">
+          <span className="font-body text-[9px] uppercase tracking-[0.2em] text-gold font-semibold">
+            Pay by Card — Secure Checkout by Stripe
+          </span>
 
-        {showReserveNote && (
-          <div className="border border-gold/50 bg-gold/10 p-5 flex flex-col gap-3" role="status">
-            <span className="font-body text-[9px] uppercase tracking-[0.2em] text-gold font-semibold">
-              Online Checkout Opens Soon
-            </span>
-            <p className="font-body text-xs text-ink/75 leading-relaxed">
-              Online payment for the shop is being set up and opens soon. To reserve these pieces today, send
-              the studio your reservation through the inquiry form — your pieces and deposit details below will
-              travel with the message — and Irene will confirm your reservation personally.
-            </p>
-            <p className="font-body text-xs text-ink/60 leading-relaxed border-t border-ink/10 pt-3">
-              {reservationSummary}
-            </p>
-            <Link
-              href="/inquire"
-              className="font-body text-[10px] uppercase tracking-[0.2em] border border-ink/30 px-6 py-3 text-center hover:bg-ink hover:text-ivory transition-colors"
+          {lines.map((line) => (
+            <a
+              key={line.slug}
+              href={line.product.paymentLink}
+              className="flex items-center justify-between gap-4 bg-gold text-ink font-body text-[10px] uppercase tracking-[0.2em] px-6 py-4 hover:bg-ink hover:text-ivory transition-colors"
             >
-              Send Reservation via Inquiry
-            </Link>
-          </div>
-        )}
+              <span>
+                Pay for {line.product.name}
+                {line.quantity > 1 ? ` × ${line.quantity}` : ""}
+              </span>
+              <span>{formatPrice(dueToday(line.product) * line.quantity)}</span>
+            </a>
+          ))}
+
+          <p className="font-body text-xs text-ink/60 leading-relaxed">
+            Each piece opens its own secure Stripe payment page. If the quantity on the payment page differs
+            from your cart, set it there to match. Your card payment confirms your{" "}
+            {totals.onArrival > 0 ? "reservation and deposit" : "order"} right away.
+          </p>
+        </div>
 
         <Link
           href="/shop"

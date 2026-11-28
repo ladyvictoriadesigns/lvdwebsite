@@ -62,7 +62,7 @@ export default function AddToCart({
         <p className="font-body text-xs text-ink/70">
           Added to your cart.{" "}
           <Link href="/shop/cart" className="text-gold underline underline-offset-4 hover:text-ink transition-colors">
-            View cart &amp; reserve your pieces
+            View cart &amp; check out
           </Link>
         </p>
       )}
